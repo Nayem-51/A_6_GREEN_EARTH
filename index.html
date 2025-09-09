@@ -137,10 +137,22 @@
                 </div>
               </div>
             </div>
-            
+           
+
+            <!-- Mobile collapse cart -->
+            <div class="mt-4 md:mt-6 lg:hidden">
+              <div class="collapse bg-[#F0FDF4]">
+                <!-- <input type="checkbox" /> -->
+                <div class="collapse-content">
+                  <div id="cartContainerMobile"></div>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
       </section>
 
-       <!-- About Campaign -->
+      <!-- About Campaign -->
 
       <section id="about" class="mb-0 bg-[#F0FDF4] p-6 md:p-8">
         <div class="max-w-4xl mx-auto">
@@ -176,7 +188,7 @@
 
       <!-- Impact Section -->
 
-      <section id="impact" class="mb-0 bg-[#CFF0DC] w-full h-[300px] p-6">
+      <section id="impact" class="mb-0 bg-[#CFF0DC] w-full p-6">
         <h2 class="text-3xl font-bold mb-6 text-center text-gray-800">
           Our Impact
         </h2>
@@ -215,47 +227,43 @@
       </section>
 
       <!-- Plant a Tree Today Form -->
-<section id="plant" class="bg-green-700 text-white w-full py-16">
-  <div class="max-w-md mx-auto bg-green-600 p-6 rounded-md shadow-md">
-    <form id="plantForm" class="grid grid-cols-1 gap-4">
-      <input
-        name="name"
-        type="text"
-        placeholder="Your Name"
-        class="w-full px-4 py-2 rounded text-black bg-white focus:outline-none"
-        required
-      />
-      <input
-        name="email"
-        type="email"
-        placeholder="Your Email Address"
-        class="w-full px-4 py-2 rounded text-black bg-white focus:outline-none"
-        required
-      />
-      <select
-        name="count"
-        class="w-full px-4 py-2 rounded text-black bg-white focus:outline-none"
-        required
-      >
-        <option value="">Number of Trees</option>
-        <option value="1">1 Tree - $5</option>
-        <option value="5">5 Trees - $25</option>
-        <option value="10">10 Trees - $50</option>
-      </select>
-      <button
-        type="submit"
-        class="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-semibold py-2 rounded-full transition"
-      >
-        Donate Now
-      </button>
-    </form>
-  </div>
-  
-</section>
-
-
+      <section id="plant" class="bg-green-700 text-white w-full py-16">
+        <div class="max-w-md mx-auto bg-green-600 p-6 rounded-md shadow-md">
+          <form id="plantForm" class="grid grid-cols-1 gap-4">
+            <input
+              name="name"
+              type="text"
+              placeholder="Your Name"
+              class="w-full px-4 py-2 rounded text-black bg-white focus:outline-none"
+              required
+            />
+            <input
+              name="email"
+              type="email"
+              placeholder="Your Email Address"
+              class="w-full px-4 py-2 rounded text-black bg-white focus:outline-none"
+              required
+            />
+            <select
+              name="count"
+              class="w-full px-4 py-2 rounded text-black bg-white focus:outline-none"
+              required
+            >
+              <option value="">Number of Trees</option>
+              <option value="1">1 Tree - $5</option>
+              <option value="5">5 Trees - $25</option>
+              <option value="10">10 Trees - $50</option>
+            </select>
+            <button
+              type="submit"
+              class="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-semibold py-2 rounded-full transition"
+            >
+              Donate Now
+            </button>
+          </form>
+        </div>
+      </section>
     </main>
-
 
     <!-- Footer -->
     <footer class="footer footer-center p-6 bg-[#14532D] text-white">
@@ -286,4 +294,3 @@
     <script src="script.js"></script>
   </body>
 </html>
-
