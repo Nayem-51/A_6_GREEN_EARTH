@@ -88,11 +88,26 @@ function renderCategories() {
   state.categories.forEach((cat) => {
     const id = cat.id;
     const btn = document.createElement("button");
-    btn.className = `btn btn-sm justify-start ${
-      state.activeCategoryId === id
-        ? "btn-success text-white"
-        : "btn-ghost border"
-    }`;
+    // btn.className = `btn btn-sm justify-start ${
+    //   state.activeCategoryId === id
+    //     ? "btn-success text-white"
+    //     : "btn-ghost border"
+    // }`;
+    btn.className = `btn btn-sm justify-start transition duration-200
+  ${
+    state.activeCategoryId === id
+      ? "btn-success text-white"
+      : "btn-ghost border hover:bg-green-100 hover:text-green-700"
+  }`;
+
+
+    btn.className = `btn btn-sm justify-start transition duration-200
+  ${
+    state.activeCategoryId === id
+      ? "btn-success text-white"
+      : "btn-ghost border hover:bg-green-100 hover:text-green-700"
+  }`;
+
     btn.textContent = cat.label;
     btn.addEventListener("click", () => setActiveCategory(id));
     dom.categoryList.appendChild(btn);
