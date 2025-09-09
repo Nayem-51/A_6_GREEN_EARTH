@@ -244,3 +244,108 @@ async function openPlantModal(id) {
   }
   dom.modal.showModal();
 }
+
+// Cart
+function addToCart(item) {
+  const itemId = String(item.id);
+  state.lastAddedId = itemId;
+  const existing = state.cartItems.find((i) => String(i.id) === itemId);
+  if (existing) {
+    existing.qty += 1;
+  } else {
+    state.cartItems.push({
+      id: itemId,
+      name: item.name,
+      price: item.price,
+      qty: 1,
+    });
+  }
+  renderCart();
+}
+
+function removeFromCart(id) {
+  const targetId = String(id);
+  const idx = state.cartItems.findIndex((i) => String(i.id) === targetId);
+  if (idx !== -1) {
+    const it = state.cartItems[idx];
+    if (it.qty > 1) {
+      it.qty -= 1;
+    } else {
+      state.cartItems.splice(idx, 1);
+    }
+  }
+  renderCart();
+}
+
+function renderCart() {
+  const containers = [dom.cartContainer, dom.cartContainerMobile].filter(
+    Boolean
+  );
+  const total = state.cartItems.reduce((sum, it) => sum + it.price * it.qty, 0);
+  dom.cartTotal && (dom.cartTotal.textContent = formatPrice(total));
+  const emptyHtml = `<div class="text-sm opacity-70">Cart is empty.</div>`;
+  const rowsHtml = state.cartItems
+    .map(
+      (it) => `
+      <div class="flex items-center justify-between gap-2 py-2 px-2 rounded ${
+        String(it.id) === String(state.lastAddedId) ? "bg-green-100" : ""
+      }">
+        <div class="flex-1">
+          <div class="font-medium">${escapeHtml(it.name)}</div>
+          <div class="text-xs opacity-70">${it.qty} × ${formatPrice(
+        it.price
+      )}</div>
+        </div>
+        <button class="btn btn-xs btn-error text-white js-remove" data-id="${
+          it.id
+        }">✕</button>
+      </div>`
+    )
+    .join("");
+  containers.forEach((c) => {
+    c.innerHTML = state.cartItems.length ? rowsHtml : emptyHtml;
+    c.querySelectorAll(".js-remove").forEach((btn) => {
+      btn.addEventListener("click", () =>
+        removeFromCart(btn.getAttribute("data-id"))
+      );
+    });
+  });
+}
+
+// Helpers
+function escapeHtml(str) {
+  return String(str ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function initYear() {
+  if (dom.year) dom.year.textContent = new Date().getFullYear();
+}
+
+function initForm() {
+  if (!dom.plantForm) return;
+  dom.plantForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const fd = new FormData(dom.plantForm);
+    const name = fd.get("name");
+    const email = fd.get("email");
+    const count = Number(fd.get("count"));
+    alert(
+      `Thank you, ${name}! We will contact you at ${email}. Trees: ${count}`
+    );
+    dom.plantForm.reset();
+  });
+}
+
+async function init() {
+  initYear();
+  initForm();
+  renderCart();
+  await loadCategories();
+}
+
+document.addEventListener("DOMContentLoaded", init);
