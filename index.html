@@ -80,3 +80,62 @@
         </div>
       </div>
     </section>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 pt-10 pb-0 flex-1">
+      <!-- Choose Your Tree (moved under hero) -->
+      <section id="shop" class="mb-0">
+        <h2
+          class="text-3xl font-bold mb-6 text-center"
+          style="color: rgba(31, 41, 55, 1)"
+        >
+          Choose Your Tree
+        </h2>
+        <div class="grid lg:grid-cols-5 gap-6 items-start">
+          <!-- Categories Sidebar -->
+          <aside class="lg:col-span-1">
+            <h3 class="font-semibold mb-3" style="color: rgba(31, 41, 55, 1)">
+              Categories
+            </h3>
+            <div
+              id="categoryList"
+              class="grid sm:grid-cols-2 lg:grid-cols-1 gap-2"
+            >
+              <!-- Dynamic category buttons -->
+            </div>
+          </aside>
+
+          <!-- Products -->
+          <div class="lg:col-span-3 grid md:grid-cols-3 gap-6">
+            <!-- Loading Spinner -->
+            <div id="loading" class="hidden col-span-full flex justify-center">
+              <span
+                class="loading loading-spinner loading-lg text-success"
+              ></span>
+            </div>
+
+            <!-- Cards Container -->
+            <div
+              id="cardsContainer"
+              class="col-span-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
+            >
+              <!-- Dynamic cards -->
+            </div>
+          </div>
+          <!-- Cart Sidebar -->
+          <aside class="lg:col-span-1 w-full">
+            <div class="card bg-white shadow-xl sticky top-24">
+              <div class="card-body">
+                <h3 class="card-title" style="color: rgba(31, 41, 55, 1)">
+                  Your Card
+                </h3>
+                <div id="cartContainer"></div>
+                <div class="divider"></div>
+                <div class="flex justify-between font-semibold">
+                  <span>Total</span>
+                  <span id="cartTotal">$0.00</span>
+                </div>
+              </div>
+            </div>
+            
+      </section>
