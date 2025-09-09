@@ -76,3 +76,31 @@ function getSafeImageUrl(url) {
     return placeholder;
   }
 }
+
+// Categories
+async function loadCategories() {
+  renderCategories();
+  setActiveCategory("all");
+}
+
+function renderCategories() {
+  dom.categoryList.innerHTML = "";
+  state.categories.forEach((cat) => {
+    const id = cat.id;
+    const btn = document.createElement("button");
+    btn.className = `btn btn-sm justify-start ${
+      state.activeCategoryId === id
+        ? "btn-success text-white"
+        : "btn-ghost border"
+    }`;
+    btn.textContent = cat.label;
+    btn.addEventListener("click", () => setActiveCategory(id));
+    dom.categoryList.appendChild(btn);
+  });
+}
+
+async function setActiveCategory(id) {
+  state.activeCategoryId = id;
+  renderCategories();
+  await loadPlantsByCategory(id);
+}
